@@ -6,9 +6,6 @@ let photos = [
     {id: 5, title: 'Водопад', src:"https://i.artfile.me/wallpaper/24-03-2014/3000x1971/priroda-vodopady-vodopad-skaly-tuchi-812410.jpg"},
     {id: 6, title: 'Таиланд', src:"https://s1.1zoom.me/b5050/273/Thailand_Tropics_Coast_Boats_PhraNang_Cave_Beach_527327_2880x1800.jpg"}
 ]
-// Соеденить modal.close() и modal.destroy() (при нажатии на "Отмена" модалка не destroится)
-// Разбить на несколько частей: addModalFunctions / delModalFunctions / 
-
 // Добавить LocalStorage
 
 function renderAlbum() {
@@ -23,11 +20,6 @@ function renderAlbum() {
 }
 
 renderAlbum() // Добавить условие если фото нету
-
-
-
-
-
 
 function createAlbum(photo) {
     const item = document.createElement('div')
@@ -46,60 +38,4 @@ function createAlbum(photo) {
         item.classList.add('card-open')
         
     }, 200);
-
 }
-
-function addPhoto() {
-    const imgHref = document.querySelector('.img-href').value
-    const cardHeader = document.querySelector('.new-card-header').value
-    const newPhotoCard = {id: 7, title: cardHeader, src: imgHref}
-
-    photos.push(newPhotoCard)
-    createAlbum(newPhotoCard)
-}
-
-function deletePhoto() {
-
-}
-
-const modalAddOptions = {
-    title: 'Добавить новое фото',
-    content: `
-    <input class="img-href form-control" placeholder="Image URL"></input>
-    <input class="new-card-header form-control" placeholder="Image title"></input>
-    `,
-    footerButtons: [
-        { text: 'Добавить', class: 'btn-primary', handler: () => addPhoto()},
-        { text: 'Отмена', class: 'btn-danger', handler: () => modal.close()},
-
-    ]
-}
-
-const modalDelOptions = {
-    title: 'Удалить фото?',
-    content: '',
-    footerButtons: [
-        { text: 'Да', class: 'btn-danger', handler: () => addPhoto()},
-        { text: 'Нет', class: 'btn-primary', handler: () => addPhoto()},
-    ]
-}
-
-let modal
-
-document.addEventListener('click', (ev) => {
-    if (ev.target.dataset.add) {
-        modal = $.modal(modalAddOptions)
-    }
-    else if (ev.target.dataset.del) {
-        modal = $.modal(modalDelOptions)
-    }
-    setTimeout(() => {
-        modal.open()      
-    }, 10);
-})
-
-// let addPhotoBtn = document.querySelector('.btn-success')
-// addPhotoBtn.addEventListener('click', () => {
-// })
-
-// const deleteModal = $.deleteModal(modalDelOptions)

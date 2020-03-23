@@ -22,10 +22,6 @@ _createModal = function(options) {
 }
 
 _createModalButtons = function(buttons = []) {
-    // if (buttons.length === 0) {
-
-    // }
-
     const footer = document.createElement('div')
     footer.classList.add('n-modal__footer')
 
@@ -33,6 +29,7 @@ _createModalButtons = function(buttons = []) {
         $btn = document.createElement('button')
         $btn.innerHTML = btn.text
         $btn.classList.add('btn', btn.class)
+        $btn.id = btn.id
         $btn.onclick = btn.handler
 
         footer.appendChild($btn)
@@ -54,6 +51,7 @@ $.modal = function(options) {
             setTimeout(() => {
                 $modal.classList.remove('hide') 
                 $modal.classList.remove('open')
+                this.destroy()
             }, ANIMATON_SPEED)
         },
         destroy() {
@@ -72,3 +70,16 @@ $.modal = function(options) {
     
     return modal
 }
+
+document.addEventListener('click', (ev) => {
+    if (ev.target.dataset.add) {
+        modal = $.modal(modalAddOptions)
+    }
+    else if (ev.target.dataset.del) {
+        modal = $.modal(modalDelOptions)
+        deletePhoto(ev.target.parentNode.parentNode)
+    }
+    setTimeout(() => {
+        modal.open()      
+    }, 10);
+})
