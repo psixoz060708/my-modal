@@ -8,11 +8,20 @@ const modalDelOptions = {
 }
 
 function deletePhoto(photoCard) {
-    delBtn = document.querySelector('#del')
-    
+    const delBtn = document.querySelector('#del')
+   
     delBtn.addEventListener('click', () => {
-        photoCard.remove()
+        let newPhotoArr = []
+
+        photos.forEach(element => {
+            if (+element.id !== +photoCard.id) {
+                newPhotoArr.push(element)
+            }
+        });
+        photos = newPhotoArr
+        localStorage.setItem('photos', JSON.stringify(photos))
+
+        photoCard.remove()    
         modal.close()
     })
-
 }

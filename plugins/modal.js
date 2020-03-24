@@ -3,15 +3,17 @@ Element.prototype.appendAfter = function(element) {
 }
 
 _createModal = function(options) {
+    const { footerButtons, title, content} = options
+
     const modal = document.createElement('div')
-    const footer = _createModalButtons(options.footerButtons)
+    const footer = _createModalButtons(footerButtons)
 
     modal.classList.add('n-modal')
     modal.insertAdjacentHTML('afterbegin', `
         <div class="n-modal__overlay" data-overlay="overlay">
             <div class="n-modal__container">
-                <div class="n-modal__header"> <h3>${options.title}</h3> </div>
-                <div class="n-modal__body"> ${options.content} </div>
+                <div class="n-modal__header"> <h3>${title}</h3> </div>
+                <div class="n-modal__body"> ${content} </div>
             </div>
         </div>
     `)

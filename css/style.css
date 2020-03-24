@@ -137,3 +137,18 @@ span {
     z-index: -1;
     opacity: 0;
 }
+
+.no-photos {
+    width: 100%;
+    text-align: center;
+    margin: 40% 0;
+}
+
+.empty-input {
+    border: 2px solid #ff6565;
+    outline: #ff6565;
+}
+
+.empty-input:target {
+    border: 5px solid black;
+}
